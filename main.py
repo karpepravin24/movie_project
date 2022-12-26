@@ -30,6 +30,7 @@ def send_to_telegram(channel, dataframe, chat_id):
     Arguments:
     channel -- the name of the Telegram channel to send the message to (either 'vegamovies' or 'dotmovies')
     dataframe -- a Pandas dataframe with columns 'title', 'full_name', 'image_link', and 'link'
+    chat_id -- chat id of telegram channel in which mesages to be sent
     """
     
     
@@ -58,7 +59,8 @@ def send_to_telegram(channel, dataframe, chat_id):
                 # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
                 requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
                 
-            print(f"{len(df)} Messages posted successfully in {channel} telegram channel.")
+            # print the message saying total message sposted in channel
+            print(f"{len(dataframe)} Messages posted successfully in {channel} telegram channel.")
                 
         else:
             # Return a message if there are no rows in the dataframe
