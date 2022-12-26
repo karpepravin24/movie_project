@@ -1,8 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import os
+
 import file_operations as fo
 import telegram_operations as to
+
 
 
 def scrape_page(url, last_run_list):
