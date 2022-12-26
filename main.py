@@ -162,7 +162,7 @@ if __name__ == "__main__":
 
     # Sending data to telegram channel
     bollywood_chat_id = '@moviesnut_bollywood'
-    bollywood_chat_id = '@moviesnut_hollywood'
+    hollywood_chat_id = '@moviesnut_hollywood'
     
     send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = bollywood_chat_id)
     send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = hollywood_chat_id)
