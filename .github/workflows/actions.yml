@@ -28,7 +28,7 @@ jobs:
             TELEGRAM_TOKEN : ${{secrets.TELEGRAM_TOKEN}}
             SHRINKME_TOKEN : ${{secrets.SHRINKME_TOKEN}}
             BOLLYWOOD_CHAT_ID : ${{secrets.BOLLYWOOD_CHAT_ID}}
-            HOLLYWOOD_CHAT_ID : ${{secrets.HOLLYWOOD_CHAT_ID}                    
+            HOLLYWOOD_CHAT_ID : ${{secrets.HOLLYWOOD_CHAT_ID}}               
         run: python main.py
         
       - name: Commit files  
