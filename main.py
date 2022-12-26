@@ -97,6 +97,6 @@ if __name__ == "__main__":
 
     # Sending data to telegram channel
     to.send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df)
-    to.send_to_telegram(chaneel = 'hollywood', dataframe = vegamovies_df)
+    to.send_to_telegram(channel = 'hollywood', dataframe = vegamovies_df)
 
 
