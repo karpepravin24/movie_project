@@ -35,11 +35,8 @@ def send_to_telegram(channel, dataframe):
                               f"\n\nLink to Download:\n{short_url}"
                 image_link = dataframe['image_link'][i]
 
-                try:
-                    response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
-                except Exception as e:
-                    print(e)
-                    
+                response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
+                                    
             print(f"{len(dataframe)} Messages posted successfully in {channel} telegram channel")       
              
         else:
