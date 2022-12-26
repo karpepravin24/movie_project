@@ -22,7 +22,7 @@ def shorten_url(url):
 
 
 
-def send_to_telegram(channel, dataframe):
+def send_to_telegram(channel, dataframe, chai_id, telegram_token):
     """Sends a message to a Telegram channel with a description and image for each row in a dataframe.
 
     Arguments:
@@ -31,45 +31,41 @@ def send_to_telegram(channel, dataframe):
     """
     
     
-    # Set the chat ID for the Bollywood and Hollywood channels based on environment variables
-    bollywood_chat_id = os.environ["BOLLYWOOD_CHAT_ID"]
-    hollywood_chat_id = os.environ["HOLLYWOOD_CHAT_ID"]
 
     # Set the chat ID based on the channel name
-    if channel == 'vegamovies':
-        chat_id = hollywood_chat_id
-    elif channel == 'dotmovies':
-        chat_id = bollywood_chat_id
+    if channel == 'vegamovies' or channel == 'dotmovies':
+        
+        # Set the URL for the Telegram API's sendPhoto method using the TELEGRAM_TOKEN environment variable
+        api_url   = f'https://api.telegram.org/bot{telegram_token}/sendPhoto'
+
+        # Check if there are any rows in the dataframe
+        if len(dataframe) > 0:
+            # Iterate over the rows of the dataframe
+            for i in range(len(dataframe)):
+                # Use the shorten_url function to shorten the URL for the current row
+                short_url = shorten_url(dataframe['link'][i])
+
+                # Construct the description string using the values of the 'title', 'full_name', and 'link' columns for the current row
+                description = f"\n{dataframe['title'][i]} \n\n{dataframe['full_name'][i]}" \
+                              f"\n\nLink to Download:\n{short_url}"
+
+                # Get the value of the 'image_link' column for the current row
+                image_link = dataframe['image_link'][i]
+
+                try:
+                    # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
+                    response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
+                except Exception as e:
+                    # Print any exceptions that are raised
+                    print(e)
+        else:
+            # Return a message if there are no rows in the dataframe
+            return "Not found any new post on website."
+               
     else:
         # Return an error message if the channel name is invalid
         return "Invalid channel type mentioned. Channel type can be either 'bollywood' or 'hollywood'."
 
-    # Set the URL for the Telegram API's sendPhoto method using the TELEGRAM_TOKEN environment variable
-    telegram_token = os.environ['TELEGRAM_TOKEN']
-    api_url   = f'https://api.telegram.org/bot{telegram_token}/sendPhoto'
-
-    # Check if there are any rows in the dataframe
-    if len(dataframe) > 0:
-        # Iterate over the rows of the dataframe
-        for i in range(len(dataframe)):
-            # Use the shorten_url function to shorten the URL for the current row
-            short_url = shorten_url(dataframe['link'][i])
-
-            # Construct the description string using the values of the 'title', 'full_name', and 'link' columns for the current row
-            description = f"\n{dataframe['title'][i]} \n\n{dataframe['full_name'][i]}" \
-                              f"\n\nLink to Download:\n{short_url}"
-
-            # Get the value of the 'image_link' column for the current row
-            image_link = dataframe['image_link'][i]
-
-            try:
-                # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
-                response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
-            except Exception as e:
-                # Print any exceptions that are raised
-                print(e)
-    else:
-        # Return a message if there are no rows in the dataframe
-        return "Not found any new post on website."
+    
 
 
