@@ -1,0 +1,43 @@
+name: Run Scraper
+
+on:
+  schedule:
+    - cron: "19 20 * * *" # Every day at 8:19 PM
+  workflow_dispatch:
+  
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  scrape-latest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+      - run : 
+          pip install -r requirements.txt
+                
+      - name: Run Scraper
+        env:
+            BOLLYWOOD_CHAT_ID : ${{secrets.BOLLYWOOD_CHAT_ID}}
+            HOLLYWOOD_CHAT_ID : ${{secrets.HOLLYWOOD_CHAT_ID}}
+            TELEGRAM_TOKEN : ${{secrets.TELEGRAM_TOEKN}}
+            SHRINKME_TOKEN : ${{secrets.SHRINKME_TOKEN}}
+                        
+        run: python main.py
+        
+      - name: Commit files  
+        run: |
+          git config --global user.name 'Pravin'
+          git config --global user.email 'karpepravin24@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout "${GITHUB_REF:11}"
+          git diff --exit-code || git commit -am "Auto commit JSON file"
+          git push
+          
