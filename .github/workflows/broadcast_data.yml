@@ -28,7 +28,7 @@ jobs:
             bollywood_chat_id : ${{secrets.BOLLYWOOD_CHAT_ID}}
             hollywood_chat_id : ${{secrets.HOLLYWOOD_CHAT_ID}}
             telegram_token : ${{secrets.TELEGRAM_TOKEN}}
-            shrinkme_toekn : ${{secrets.SHRINKME_TOKEN}}
+            shrinkme_token : ${{secrets.SHRINKME_TOKEN}}
                         
         run: python main.py
         
