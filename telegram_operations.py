@@ -39,7 +39,8 @@ def send_to_telegram(channel, dataframe):
                     response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
                 except Exception as e:
                     print(e)
-             print(f"{len(dataframe)} MEssages posted successfully in {channel} telegram channel")       
+                    
+            print(f"{len(dataframe)} Messages posted successfully in {channel} telegram channel")       
              
         else:
             return "Not found any new post on website."
