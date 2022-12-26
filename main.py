@@ -35,7 +35,7 @@ def send_to_telegram(channel, dataframe, chat_id):
     
     telegram_token = '5800902618:AAEiZQ26G_4YUbS9eHafJohhZID3fsCEYLc'
     # Set the chat ID based on the channel name
-    if channel == 'vegamovies' or channel == 'dotmovies':
+    if channel == 'bollywood' or channel == 'hollywood':
         
         # Set the URL for the Telegram API's sendPhoto method using the TELEGRAM_TOKEN environment variable
         api_url   = f'https://api.telegram.org/bot{telegram_token}/sendPhoto'
@@ -167,6 +167,6 @@ if __name__ == "__main__":
     hollywood_chat_id = '@moviesnut_hollywood'
     
     send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = bollywood_chat_id)
-    send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = hollywood_chat_id)
+    send_to_telegram(channel = 'hollywood', dataframe = vegamovies_df, chat_id = hollywood_chat_id)
 
 
