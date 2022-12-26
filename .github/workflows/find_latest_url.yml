@@ -1,0 +1,36 @@
+name: Update Latest URL
+
+on:
+  schedule:
+    - cron: 17 */3 * * * # Every 3 hour at 17 minute
+  workflow_dispatch:
+  
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  Upadte_Latest_URL:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+      - run : 
+          pip install selenium
+                
+      - name: Find Latest URL
+        run: python find_url.py
+        
+      - name: Commit files  
+        run: |
+          git config --global user.name 'Pravin'
+          git config --global user.email 'karpepravin24@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout "${GITHUB_REF:11}"
+          git diff --exit-code || git commit -am "Auto commit JSON file"
+          git push
