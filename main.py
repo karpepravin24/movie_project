@@ -161,8 +161,8 @@ if __name__ == "__main__":
                                                           last_run_list = dotmovies_last_run_list)
 
     # Saving current run values to json file
-    fo.dump_latest_run_results(domain='vegamovies', dataframe=vegamovies_df)
-    fo.dump_latest_run_results(domain='dotmovies', dataframe=dotmovies_df)
+    fo.dump_latest_run_results(domain='vegamovies', run_results_list = vegamovies_full_title_list)
+    fo.dump_latest_run_results(domain='dotmovies', run_results_list = dotmovies_full_title_list)
 
     # Sending data to telegram channel
     bollywood_chat_id = '@moviesnut_bollywood'
