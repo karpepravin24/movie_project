@@ -8,7 +8,7 @@ import file_operations as fo
 
 def shorten_url(url):
     # Hardcoded API token
-    shrinkme_token = '888f858b84660d25a3aa34c2d50adc2ad6de73e4'
+    shrinkme_token = os.environ['SHRINKME_TOKEN']
 
     try:
         # Send a GET request to the Shrinkme API endpoint, including the API token, the URL to be shortened, and the desired return format
@@ -34,7 +34,7 @@ def send_to_telegram(channel, dataframe, chat_id):
     """
     
     
-    telegram_token = '5800902618:AAEiZQ26G_4YUbS9eHafJohhZID3fsCEYLc'
+    telegram_token = os.environ['TELEGRAM_TOKEN']
     # Set the chat ID based on the channel name
     if channel == 'bollywood' or channel == 'hollywood':
         
@@ -165,8 +165,8 @@ if __name__ == "__main__":
     fo.dump_latest_run_results(domain='dotmovies', run_results_list = dotmovies_full_title_list)
 
     # Sending data to telegram channel
-    bollywood_chat_id = '@moviesnut_bollywood'
-    hollywood_chat_id = '@moviesnut_hollywood'
+    bollywood_chat_id = os.environ['BOLLYWOOD_CHAT_ID']
+    hollywood_chat_id = os.environ['HOLLYWOOD_CHAT_ID']
     
     send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = bollywood_chat_id)
     send_to_telegram(channel = 'hollywood', dataframe = vegamovies_df, chat_id = hollywood_chat_id)
