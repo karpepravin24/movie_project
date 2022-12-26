@@ -100,8 +100,8 @@ if __name__ == "__main__":
 
     # Sending data to telegram channel
     to.send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df,
-                        chat_id = os.environ['BOOLYWOOD_CHAT_ID'], telegram_token = os.environ['TELEGRAM_TOKEN'])
+                        chat_id = os.environ['BOLLYWOOD_CHAT_ID'], telegram_token = os.environ['TELEGRAM_TOKEN'])
     to.send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df,
-                        chat_id = os.environ['HOOLYWOOD_CHAT_ID'], telegram_token = os.environ['TELEGRAM_TOKEN'])
+                        chat_id = os.environ['HOLLYWOOD_CHAT_ID'], telegram_token = os.environ['TELEGRAM_TOKEN'])
 
 
