@@ -27,7 +27,7 @@ jobs:
         env:
             BOLLYWOOD_CHAT_ID : ${{secrets.BOLLYWOOD_CHAT_ID}}
             HOLLYWOOD_CHAT_ID : ${{secrets.HOLLYWOOD_CHAT_ID}}
-            TELEGRAM_TOKEN : ${{secrets.TELEGRAM_TOEKN}}
+            TELEGRAM_TOKEN : ${{secrets.TELEGRAM_TOKEN}}
             SHRINKME_TOKEN : ${{secrets.SHRINKME_TOKEN}}
                         
         run: python main.py
