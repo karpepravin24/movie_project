@@ -38,7 +38,7 @@ def get_last_run_results(domain):
     return values
 
 
-def dump_latest_run_results(domain, dataframe):
+def dump_latest_run_results(domain, run_results_list):
     """
     Save the full names of movies from a Pandas dataframe to a JSON file.
 
@@ -58,7 +58,7 @@ def dump_latest_run_results(domain, dataframe):
 
     # Open the file in write mode and write the data to the file
     with open(file_name, 'w') as f:
-        json.dump(dataframe['full_name'].tolist(), f)
+        json.dump(run_results_list, f)
 
 
 
