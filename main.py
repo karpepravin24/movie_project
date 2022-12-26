@@ -58,7 +58,7 @@ def send_to_telegram(channel, dataframe, chat_id):
                 # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
                 requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
                 
-            print(f"{len(df} Messages posted successfully in {domain} telegram channel.")
+            print(f"{len(df)} Messages posted successfully in {channel} telegram channel.")
                 
         else:
             # Return a message if there are no rows in the dataframe
