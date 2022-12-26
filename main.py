@@ -58,13 +58,17 @@ def send_to_telegram(channel, dataframe, chat_id):
                 # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
                 requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
                 
+            print(f"{len(df} Messages posted successfully in {domain} telegram channel.")
+                
         else:
             # Return a message if there are no rows in the dataframe
-            return "Not found any new post on website."
+            print("Not found any new post on website.")
+            return False
                
     else:
         # Return an error message if the channel name is invalid
-        return "Invalid channel type mentioned. Channel type can be either 'bollywood' or 'hollywood'."
+        print("Invalid channel type mentioned. Channel type can be either 'bollywood' or 'hollywood'.")
+        return False
 
 
 
