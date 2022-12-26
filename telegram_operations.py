@@ -24,9 +24,9 @@ def shorten_url(url):
 def send_to_telegram(channel, dataframe):
     channel = channel.upper()
     if channel == 'bollywood' or channel == 'hollywood':
-        api_token = os.environ['API_TOKEN']
+        telegram_token = os.environ['TELEGRAM_TOKEN']
         chat_id   = os.environ[f'{channel}_CHAT_ID']
-        api_url   = f'https://api.telegram.org/bot{api_token}/sendPhoto'
+        api_url   = f'https://api.telegram.org/bot{telegram_token}/sendPhoto'
 
         if len(dataframe) > 0:
             for i in range(len(dataframe)):
@@ -39,6 +39,8 @@ def send_to_telegram(channel, dataframe):
                     response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
                 except Exception as e:
                     print(e)
+             print(f"{len(dataframe)} MEssages posted successfully in {channel} telegram channel")       
+             
         else:
             return "Not found any new post on website."
 
