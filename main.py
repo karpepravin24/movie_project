@@ -8,7 +8,7 @@ import file_operations as fo
 
 def shorten_url(url):
     # Hardcoded API token
-    shrinkme_token = os.environ["SHRINKME_TOKEN"]
+    shrinkme_token = '888f858b84660d25a3aa34c2d50adc2ad6de73e4'
 
     try:
         # Send a GET request to the Shrinkme API endpoint, including the API token, the URL to be shortened, and the desired return format
@@ -33,7 +33,7 @@ def send_to_telegram(channel, dataframe, chat_id):
     """
     
     
-    telegram_token = os.environ['TELEGRAM_TOKEN']
+    telegram_token = '5800902618:AAEiZQ26G_4YUbS9eHafJohhZID3fsCEYLc'
     # Set the chat ID based on the channel name
     if channel == 'vegamovies' or channel == 'dotmovies':
         
