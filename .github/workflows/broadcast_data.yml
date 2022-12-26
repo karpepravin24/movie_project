@@ -25,10 +25,10 @@ jobs:
                 
       - name: Run Scraper
         env:
-            BOLLYWOOD_CHAT_ID : ${{secrets.BOLLYWOOD_CHAT_ID}}
-            HOLLYWOOD_CHAT_ID : ${{secrets.HOLLYWOOD_CHAT_ID}}
-            TELEGRAM_TOKEN : ${{secrets.TELEGRAM_TOKEN}}
-            SHRINKME_TOKEN : ${{secrets.SHRINKME_TOKEN}}
+            bollywood_chat_id : ${{secrets.BOLLYWOOD_CHAT_ID}}
+            hollywood_chat_id : ${{secrets.HOLLYWOOD_CHAT_ID}}
+            telegram_token : ${{secrets.TELEGRAM_TOKEN}}
+            shrinkme_toekn : ${{secrets.SHRINKME_TOKEN}}
                         
         run: python main.py
         
