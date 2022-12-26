@@ -25,7 +25,7 @@ def shorten_url(url):
     return short_url
 
 
-def send_to_telegram(channel, dataframe, chai_id):
+def send_to_telegram(channel, dataframe, chat_id):
     """Sends a message to a Telegram channel with a description and image for each row in a dataframe.
     Arguments:
     channel -- the name of the Telegram channel to send the message to (either 'vegamovies' or 'dotmovies')
