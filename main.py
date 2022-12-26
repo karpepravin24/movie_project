@@ -161,8 +161,8 @@ if __name__ == "__main__":
     fo.dump_latest_run_results(domain='dotmovies', dataframe=dotmovies_df)
 
     # Sending data to telegram channel
-    bollywood_chat_id = os.environ['BOLLYWOOD_CHAT_ID']
-    bollywood_chat_id = os.environ['HOLLYWOOD_CHAT_ID']
+    bollywood_chat_id = '@moviesnut_bollywood'
+    bollywood_chat_id = '@moviesnut_hollywood'
     
     send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = bollywood_chat_id)
     send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df, chat_id = hollywood_chat_id)
