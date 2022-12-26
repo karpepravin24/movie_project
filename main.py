@@ -71,7 +71,7 @@ def scrape_page(url, last_run_list):
     # Create a Pandas dataframe from the values_list
     df = pd.DataFrame(values_list, columns=['full_name', 'title', 'link', 'image_link'])
 
-    return df, df['full_name'].tolist()
+    return df, movie_fullname_list
 
 
 if __name__ == "__main__":
