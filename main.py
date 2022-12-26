@@ -54,12 +54,10 @@ def send_to_telegram(channel, dataframe, chat_id):
                 # Get the value of the 'image_link' column for the current row
                 image_link = dataframe['image_link'][i]
 
-                try:
-                    # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
-                    response = requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
-                except Exception as e:
-                    # Print any exceptions that are raised
-                    print(e)
+               
+                # Send a request to the Telegram API's sendPhoto method with the chat ID, description, and image link as arguments
+                requests.post(api_url, json={'chat_id': chat_id, 'caption': description, 'photo': image_link})
+                
         else:
             # Return a message if there are no rows in the dataframe
             return "Not found any new post on website."
