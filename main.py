@@ -96,7 +96,9 @@ if __name__ == "__main__":
     fo.dump_latest_run_results(domain='dotmovies', dataframe=dotmovies_df)
 
     # Sending data to telegram channel
-    to.send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df)
-    to.send_to_telegram(channel = 'hollywood', dataframe = vegamovies_df)
+    to.send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df,
+                        chat_id = os.environ['BOOLYWOOD_CHAT_ID'], telegram_token = os.environ['TELEGRAM_TOKEN'])
+    to.send_to_telegram(channel = 'bollywood', dataframe = dotmovies_df,
+                        chat_id = os.environ['HOOLYWOOD_CHAT_ID'], telegram_token = os.environ['TELEGRAM_TOKEN'])
 
 
