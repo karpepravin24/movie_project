@@ -4,7 +4,7 @@ import os
 
 def shorten_url(url):
     # Hardcoded API token
-    shrinkme_token = os.environ['SHRINKME_TOEKN']
+    shrinkme_token = os.environ["SHRINKME_TOKEN"]
 
     try:
         # Send a GET request to the Shrinkme API endpoint, including the API token, the URL to be shortened, and the desired return format
@@ -32,13 +32,13 @@ def send_to_telegram(channel, dataframe):
     
     
     # Set the chat ID for the Bollywood and Hollywood channels based on environment variables
-    bollywood_chat_id = os.environ['BOLLYWOOD_CHAT_ID']
-    hollywood_chat_id = os.environ['HOLLYWOOD_CHAT_ID']
+    bollywood_chat_id = os.environ["BOLLYWOOD_CHAT_ID"]
+    hollywood_chat_id = os.environ["HOLLYWOOD_CHAT_ID"]
 
     # Set the chat ID based on the channel name
-    if channel == 'VEGAMOVIES':
+    if channel == 'vegamovies':
         chat_id = hollywood_chat_id
-    elif channel == 'DOTMOVIES':
+    elif channel == 'dotmovies':
         chat_id = bollywood_chat_id
     else:
         # Return an error message if the channel name is invalid
