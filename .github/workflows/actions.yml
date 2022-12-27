@@ -2,7 +2,7 @@ name: Run Scraper
 
 on:
   schedule:
-    - cron: "19 20 * * *" # Every day at 8:19 PM
+    - cron: "19 8,20 * * *" # Every day at 8:19 PM
   workflow_dispatch:
   
 env:
