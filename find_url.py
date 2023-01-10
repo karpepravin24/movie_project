@@ -23,21 +23,21 @@ def find_latest_url():
     input_box.send_keys(Keys.ENTER)
 
     # Wait for the search results to load and then click on the first result.
-    WebDriverWait(driver, 10)
-    first_search = driver.find_element(By.XPATH,'//*[@id="rso"]/div[1]')
-    click_box = first_search.find_element(By.XPATH,'div/div/div/div/div/div/div[1]/a/h3').click()
+    WebDriverWait(driver, 15)
+    soup = BeautifulSoup(driver.page_source, 'lxml')
+    first_search_result = soup.find('div', class_ = 'MjjYud')
+    vegamovies_url = first_search_result.find('a').get('href')
+    print("Vegamovies_link:  ", vegamovies_url)
 
-    # Wait for an element on the resulting page to load and then extract the current URL of the page
-    # and the URL of a link on the page.
-
-    WebDriverWait(driver, 20).until(ec.presence_of_element_located((By.XPATH, '//*[@id="main-content"]/div/div[2]/div/div')))
-    vegamovies_url = driver.current_url
-    dotmovies_url = driver.find_element(By.XPATH, '//*[@id="header-social"]/a[1]').get_attribute('href')
+    page = requests.get(vegamovies_url, timeout = 20)
+    soup = BeautifulSoup(page.text, 'lxml')
+    header = soup.find('div', attrs={'id':'header-social'})
+    dotmovies_url = header.find('a').get('href')
+    print("Dotmovies_link:  ", dotmovies_url)
 
     print("Latest URL of Vegamovies & Dotmovies fetched successfully")
     # Return both URLs as a tuple.
     return vegamovies_url, dotmovies_url
-
 
 
 if __name__ == "__main__":
