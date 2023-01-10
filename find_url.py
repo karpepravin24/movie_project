@@ -9,9 +9,9 @@ import file_operations as fo
 
 
 def find_latest_url():
-    # Create a new Chrome browser instance with the "--headless" option,
-    # which allows the browser to run in the background without opening a window.
-
+    # # Create a new Chrome browser instance with the "--headless" option,
+    # # which allows the browser to run in the background without opening a window.
+    #
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
@@ -24,7 +24,8 @@ def find_latest_url():
 
     # Wait for the search results to load and then click on the first result.
     WebDriverWait(driver, 10)
-    driver.find_element(By.XPATH, '//*[@id="rso"]/div[1]/div/div/div/div/div/div/div[1]/a/h3').click()
+    first_search = driver.find_element(By.XPATH,'//*[@id="rso"]/div[1]')
+    click_box = first_search.find_element(By.XPATH,'div/div/div/div/div/div/div[1]/a/h3').click()
 
     # Wait for an element on the resulting page to load and then extract the current URL of the page
     # and the URL of a link on the page.
