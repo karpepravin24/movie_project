@@ -23,14 +23,14 @@ def find_latest_url():
     input_box.send_keys(Keys.ENTER)
 
     # Wait for the search results to load and then click on the first result.
-    WebDriverWait(driver, 10).until(
+    WebDriverWait(driver, 20).until(
         ec.presence_of_element_located((By.XPATH, '//*[@id="rso"]/div[1]/div/div/div/div/div/div/div[1]/a/h3')))
     driver.find_element(By.XPATH, '//*[@id="rso"]/div[1]/div/div/div/div/div/div/div[1]/a/h3').click()
 
     # Wait for an element on the resulting page to load and then extract the current URL of the page
     # and the URL of a link on the page.
 
-    WebDriverWait(driver, 10).until(
+    WebDriverWait(driver, 20).until(
         ec.presence_of_element_located((By.XPATH, '//*[@id="main-content"]/div/div[2]/div/div')))
     vegamovies_url = driver.current_url
     dotmovies_url = driver.find_element(By.XPATH, '//*[@id="header-social"]/a[1]').get_attribute('href')
