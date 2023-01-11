@@ -95,7 +95,7 @@ def scrape_page(url, last_run_list):
     i = 1
     while i < 3:
         # Make an HTTP GET request to the specified URL
-        page = requests.get(url, timeout=20)
+        page = requests.get(url)
 
         # If the request is successful (status code is 200)
         if page.status_code == 200:
