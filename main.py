@@ -149,16 +149,16 @@ if __name__ == "__main__":
     # Extract the URLs for the 'vegamovies' and 'dotmovies' domains
     vegamovies_url        = latest_url_dictionary['vegamovies_url']
     dotmovies_url         = latest_url_dictionary['dotmovies_url']
+    print("Vegamovies URL:  ", vegamovies_url)
+    print("Dotmovies URL:  ", dotmovies_url)
 
     # Get the lists of movies from the last run of the script for each domain
     vegamovies_last_run_list = fo.get_last_run_results(domain = 'vegamovies')
     dotmovies_last_run_list  = fo.get_last_run_results(domain ='dotmovies')
 
     # Scrape the data from the 'vegamovies' and 'dotmovies' webpages
-    vegamovies_df, vegamovies_full_title_list = scrape_page(url = vegamovies_url,
-                                                            last_run_list = vegamovies_last_run_list)
-    dotmovies_df, dotmovies_full_title_list = scrape_page(url = dotmovies_url,
-                                                          last_run_list = dotmovies_last_run_list)
+    vegamovies_df, vegamovies_full_title_list = scrape_page(url = vegamovies_url, last_run_list = vegamovies_last_run_list)
+    dotmovies_df, dotmovies_full_title_list = scrape_page(url = dotmovies_url, last_run_list = dotmovies_last_run_list)
 
     # Saving current run values to json file
     fo.dump_latest_run_results(domain='vegamovies', run_results_list = vegamovies_full_title_list)
