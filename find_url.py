@@ -10,13 +10,25 @@ from bs4 import BeautifulSoup
 import file_operations as fo
 
 
-def find_latest_url():
+def get_headless_driver():
     # # Create a new Chrome browser instance with the "--headless" option,
     # # which allows the browser to run in the background without opening a window.
-    #
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(options=chrome_options)
+
+    return driver
+
+def check_url_syntax(url):
+    if not url.endswith("/"):
+        valid_url = url = "/"
+        return valid_url
+    else:
+        return url
+
+def get_vegamovies_url():
+
+    driver = get_headless_driver()
 
     # Navigate to the Google homepage and enter the search term "Vegamovies" into the search input field.
     driver.get('https://www.google.com/')
@@ -27,22 +39,30 @@ def find_latest_url():
     # Wait for the search results to load and then click on the first result.
     WebDriverWait(driver, 15)
     soup = BeautifulSoup(driver.page_source, 'lxml')
-    first_search_result = soup.find('div', class_ = 'MjjYud')
+    first_search_result = soup.find('div', class_='MjjYud')
     vegamovies_url = first_search_result.find('a').get('href')
-    print("Vegamovies_link:  ", vegamovies_url)
+    vegamovies_url = check_url_syntax(vegamovies_url)
+    driver.close()
 
-    page = requests.get(vegamovies_url, timeout = 20)
-    soup = BeautifulSoup(page.text, 'lxml')
-    header = soup.find('div', attrs={'id':'header-social'})
-    dotmovies_url = header.find('a').get('href')
-    print("Dotmovies_link:  ", dotmovies_url)
+    return vegamovies_url
 
-    print("Latest URL of Vegamovies & Dotmovies fetched successfully")
-    # Return both URLs as a tuple.
-    return vegamovies_url, dotmovies_url
+
+def get_dotmovies_url(vegamovies_url):
+    driver = get_headless_driver()
+    driver.get(vegamovies_url)
+
+    dotmovies_url = driver.find_element(By.XPATH,'//*[@id="header-social"]/a[1]').get_attribute('href')
+    dotmovies_url = check_url_syntax(dotmovies_url)
+    driver.close()
+
+    return dotmovies_url
 
 
 if __name__ == "__main__":
-    vegamovies_url, dotmovies_url = find_latest_url()
-    fo.dump_latest_url(vegamovies_url=vegamovies_url, dotmovies_url=dotmovies_url, json_file_path="url_domain_names.json")
+    vegamovies_url = get_vegamovies_url()
+    dotmovies_url = get_dotmovies_url(vegamovies_url)
+    print("Vegamovies URL:  ", vegamovies_url)
+    print("Dotmovies URL :  ", dotmovies_url)
 
+    fo.dump_latest_url(vegamovies_url=vegamovies_url, dotmovies_url=dotmovies_url,
+                       json_file_path="url_domain_names.json")
