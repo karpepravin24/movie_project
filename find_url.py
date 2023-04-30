@@ -32,7 +32,7 @@ def get_vegamovies_url():
 
     # Navigate to the Google homepage and enter the search term "Vegamovies" into the search input field.
     driver.get('https://www.google.com/')
-    input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
+    input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
     input_box.send_keys("Vegamovies")
     input_box.send_keys(Keys.ENTER)
 
