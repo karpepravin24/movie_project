@@ -50,10 +50,15 @@ def get_vegamovies_url():
 def get_dotmovies_url(vegamovies_url):
     driver = get_headless_driver()
     driver.get(vegamovies_url)
-    #soup = BeautifulSoup(driver.page_source, 'lxml')
+    soup = BeautifulSoup(driver.page_source, 'lxml')
+    header = soup.find({'id':'header-social'})
+    if header:
+        print("header found")
+    else:
+        print('header not found")
     #header = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]')
-    dotmovies_url = driver.find_element(By.PARTIAL_LINK_TEXT, 'Bollywood').get_attribute('href')
-    print("Found dotmovies url")
+    #dotmovies_url = driver.find_element(By.PARTIAL_LINK_TEXT, 'Bollywood').get_attribute('href')
+    #print("Found dotmovies url")
 
     # dotmovies_url = driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/a[1]').get_attribute('href')
     dotmovies_url = check_url_syntax(dotmovies_url)
