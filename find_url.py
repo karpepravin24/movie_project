@@ -60,6 +60,7 @@ def get_dotmovies_url(vegamovies_url):
 
 if __name__ == "__main__":
     vegamovies_url = get_vegamovies_url()
+    print("Vegamovies url:   ",vegamovies_url)
     dotmovies_url = get_dotmovies_url(vegamovies_url)
     print("Vegamovies URL:  ", vegamovies_url)
     print("Dotmovies URL :  ", dotmovies_url)
