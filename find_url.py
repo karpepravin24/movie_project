@@ -51,7 +51,7 @@ def get_dotmovies_url(vegamovies_url):
     driver = get_headless_driver()
     driver.get(vegamovies_url)
 
-    dotmovies_url = driver.find_element(By.XPATH,'//*[@id="header-social"]/a[1]').get_attribute('href')
+    dotmovies_url = driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/a[1]').get_attribute('href')
     dotmovies_url = check_url_syntax(dotmovies_url)
     driver.close()
 
