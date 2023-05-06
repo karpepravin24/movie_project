@@ -51,8 +51,8 @@ def get_dotmovies_url(vegamovies_url):
     driver = get_headless_driver()
     driver.get(vegamovies_url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
-    header = soup.find('div', {"id":'header-social'})
-    dotmovies_url = header.find('a').get('href')
+    header = soup.find_all('div', {"id":'header-social'})
+    dotmovies_url = header[-1].find('a').get('href')
 
     # dotmovies_url = driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/a[1]').get_attribute('href')
     dotmovies_url = check_url_syntax(dotmovies_url)
