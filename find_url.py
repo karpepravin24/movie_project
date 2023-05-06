@@ -49,18 +49,18 @@ def get_vegamovies_url():
 
 def get_dotmovies_url(vegamovies_url):
     driver = get_headless_driver()
-    driver.get(vegamovies_url)
-    soup = BeautifulSoup(driver.page_source, 'lxml')
-    header = soup.find({'id':'header-social'})
-    if header:
-        print("header found")
-    else:
-        print('header not found")
-    #header = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]')
-    #dotmovies_url = driver.find_element(By.PARTIAL_LINK_TEXT, 'Bollywood').get_attribute('href')
-    #print("Found dotmovies url")
 
-    # dotmovies_url = driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/a[1]').get_attribute('href')
+    # Navigate to the Google homepage and enter the search term "Vegamovies" into the search input field.
+    driver.get('https://www.google.com/')
+    input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
+    input_box.send_keys("Dotmovies")
+    input_box.send_keys(Keys.ENTER)
+
+    # Wait for the search results to load and then click on the first result.
+    WebDriverWait(driver, 15)
+    soup = BeautifulSoup(driver.page_source, 'lxml')
+    first_search_result = soup.find('div', class_='MjjYud')
+    dotmovies_url = first_search_result.find('a').get('href')
     dotmovies_url = check_url_syntax(dotmovies_url)
     driver.close()
 
@@ -69,9 +69,8 @@ def get_dotmovies_url(vegamovies_url):
 
 if __name__ == "__main__":
     vegamovies_url = get_vegamovies_url()
-    print("Vegamovies url:   ",vegamovies_url)
-    dotmovies_url = get_dotmovies_url(vegamovies_url)
     print("Vegamovies URL:  ", vegamovies_url)
+    dotmovies_url = get_dotmovies_url(vegamovies_url)
     print("Dotmovies URL :  ", dotmovies_url)
 
     fo.dump_latest_url(vegamovies_url=vegamovies_url, dotmovies_url=dotmovies_url,
