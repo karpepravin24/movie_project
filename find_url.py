@@ -31,12 +31,14 @@ def get_vegamovies_url():
     driver = get_headless_driver()
 
     # Navigate to the Google homepage and enter the search term "Vegamovies" into the search input field.
-    driver.get('https://www.google.com/')
-    input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
-    input_box.send_keys("Vegamovies")
-    input_box.send_keys(Keys.ENTER)
+    # driver.get('https://www.google.com/')
+    # input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
+    # input_box.send_keys("Vegamovies")
+    # input_box.send_keys(Keys.ENTER)
 
     # Wait for the search results to load and then click on the first result.
+
+    driver.get('https://www.google.com/search?q=vegamovies')
     WebDriverWait(driver, 15)
     soup = BeautifulSoup(driver.page_source, 'lxml')
     first_search_result = soup.find('div', class_='MjjYud')
@@ -51,11 +53,12 @@ def get_dotmovies_url(vegamovies_url):
     driver = get_headless_driver()
 
     # Navigate to the Google homepage and enter the search term "Vegamovies" into the search input field.
-    driver.get('https://www.google.com/')
-    input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
-    input_box.send_keys("Dotmovies")
-    input_box.send_keys(Keys.ENTER)
+    # driver.get('https://www.google.com/')
+    # input_box = driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/textarea')
+    # input_box.send_keys("Dotmovies")
+    # input_box.send_keys(Keys.ENTER)
 
+    driver.get('https://www.google.com/search?q=dotmovies')
     # Wait for the search results to load and then click on the first result.
     WebDriverWait(driver, 15)
     soup = BeautifulSoup(driver.page_source, 'lxml')
