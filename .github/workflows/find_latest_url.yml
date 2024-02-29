@@ -2,7 +2,7 @@ name: Update Latest URL
 
 on:
   schedule:
-    - cron: 17 */3 * * * # Every 3 hour at 17 minute
+    - cron: 17 */12 * * * # Every 3 hour at 17 minute
   workflow_dispatch:
   
 env:
